@@ -26,8 +26,6 @@ export class HeroController implements OnModuleInit {
 
   onModuleInit() {
     this.heroService = this.client.getService<HeroService>('HeroService');
-    const example = this.heroService.findOne({ id: 1 });
-    console.log(example, '**example');
   }
 
   @Get()
@@ -48,11 +46,15 @@ export class HeroController implements OnModuleInit {
 
   @GrpcMethod('HeroService')
   findOne(data: HeroById): Hero {
+    console.log('HeroService findOne');
+
     return this.items.find(({ id }) => id === data.id);
   }
 
   @GrpcStreamMethod('HeroService')
   findMany(data$: Observable<HeroById>): Observable<Hero> {
+    console.log('HeroService findMany');
+
     const hero$ = new Subject<Hero>();
 
     const onNext = (heroById: HeroById) => {
