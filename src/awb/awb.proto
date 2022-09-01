@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package awb;
+
+service AwbService {
+  rpc FindOneByAwbNumber(AwbByAwbNumber) returns (Awb);
+  rpc FindOneByAwbNumbers(AwbByAwbNumber) returns (Awb);
+  rpc FindManyByAwbNumber(stream AwbByAwbNumber) returns (stream Awb);
+}
+
+message AwbByAwbNumber { int32 awbNumber = 1; }
+
+message Awb {
+  int32 awbNumber = 1;
+  string awbId = 2;
+  string title = 3;
+}
