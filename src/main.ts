@@ -9,7 +9,7 @@ async function bootstrapGRPC() {
       transport: Transport.GRPC,
       options: {
         package: 'awb',
-        protoPath: join(__dirname, './hero/awb.proto'),
+        protoPath: join(__dirname, './awb/awb.proto'),
         url: '0.0.0.0:50052',
       },
     },
